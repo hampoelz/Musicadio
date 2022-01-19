@@ -64,11 +64,13 @@ jobs:
     - name: Copy compiled files
       run: |
         cd ${{ env.PROJECT }}.Build/${{ needs.extract_channel.outputs.release_channel }}/
+        shopt -s extglob
         rm -rfv !(${{ env.PERSISTENT_FILES }})
-        cp -r ${{ env.GITHUB_WORKSPACE }}/${{ env.PROJECT }}/bin/Release/net5.0/publish/* .
+        cd -
+        cp -r ${{ env.PROJECT }}/bin/Release/net5.0/publish/* ${{ env.PROJECT }}.Build/${{ needs.extract_channel.outputs.release_channel }}
     - name: Push files
       run: |
-        cd ${{ env.GITHUB_WORKSPACE }}/${{ env.PROJECT }}.Build
+        cd ${{ env.PROJECT }}.Build
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add .
