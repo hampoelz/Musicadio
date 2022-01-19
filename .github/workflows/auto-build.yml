@@ -6,7 +6,10 @@ on:
   schedule:
   - cron: "0 0 * * *"
   workflow_dispatch:
-  
+    inputs:
+      skipDateCheck:
+        description: 'Skip latest commit check'     
+        default: 'false'
 jobs:
   check_date:
     name: Check Latest Commit
@@ -20,7 +23,7 @@ jobs:
       - id: should_run
         continue-on-error: true
         name: Check latest commit is less than a day
-        if: ${{ github.event_name == 'schedule' }}
+        if: ${{ github.event_name == 'schedule' && github.event.inputs.skipDateCheck != 'true' }}
         run: test -z $(git rev-list --after="24 hours" ${{ github.sha }}) && echo "::set-output name=should_run::false"
   extract_channel:
     name: Extract branch name and release channel
@@ -64,11 +67,13 @@ jobs:
     - name: Copy compiled files
       run: |
         cd ${{ env.PROJECT }}.Build/${{ needs.extract_channel.outputs.release_channel }}/
+        shopt -s extglob
         rm -rfv !(${{ env.PERSISTENT_FILES }})
-        cp -r ${{ env.GITHUB_WORKSPACE }}/${{ env.PROJECT }}/bin/Release/net5.0/publish/* .
+        cd -
+        cp -r ${{ env.PROJECT }}/bin/Release/net5.0/publish/* ${{ env.PROJECT }}.Build/${{ needs.extract_channel.outputs.release_channel }}
     - name: Push files
       run: |
-        cd ${{ env.GITHUB_WORKSPACE }}/${{ env.PROJECT }}.Build
+        cd ${{ env.PROJECT }}.Build
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add .
