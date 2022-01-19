@@ -1,0 +1,9 @@
+{
+  "solution": {
+    "path": "Musicadio.sln",
+    "projects": [
+		"Musicadio.Shared\\Musicadio.Shared.shproj",
+		"Musicadio.Wasm\\Musicadio.Wasm.csproj",
+    ]
+  }
+}
