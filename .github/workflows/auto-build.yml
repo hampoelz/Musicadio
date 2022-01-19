@@ -42,6 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PROJECT: Musicadio.Wasm
+      PERSISTENT_FILES: '"icons"|"favicon.ico"|"manifest.json"|"workbox.js"'
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -62,11 +63,12 @@ jobs:
         path: ${{ env.PROJECT }}.Build
     - name: Copy compiled files
       run: |
-        rm -rf ${{ env.PROJECT }}.Build/${{ needs.extract_channel.outputs.release_channel }}/*
-        cp -r ${{ env.PROJECT }}/bin/Release/net5.0/publish/* ${{ env.PROJECT }}.Build/${{ needs.extract_channel.outputs.release_channel }}
+        cd ${{ env.PROJECT }}.Build/${{ needs.extract_channel.outputs.release_channel }}/
+        rm -rfv !(${{ env.PERSISTENT_FILES }})
+        cp -r ${{ env.GITHUB_WORKSPACE }}/${{ env.PROJECT }}/bin/Release/net5.0/publish/* .
     - name: Push files
       run: |
-        cd ${{ env.PROJECT }}.Build
+        cd ${{ env.GITHUB_WORKSPACE }}/${{ env.PROJECT }}.Build
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add .
