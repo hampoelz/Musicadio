@@ -1,0 +1,74 @@
+name: Automated Build
+
+on:
+  push:
+    branches: [ beta, stable ]
+  schedule:
+  - cron: "0 0 * * *"
+  workflow_dispatch:
+  
+jobs:
+  check_date:
+    name: Check Latest Commit
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.should_run.outputs.should_run }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Print latest commit
+        run: echo ${{ github.sha }}
+      - id: should_run
+        continue-on-error: true
+        name: Check latest commit is less than a day
+        if: ${{ github.event_name == 'schedule' }}
+        run: test -z $(git rev-list --after="24 hours" ${{ github.sha }}) && echo "::set-output name=should_run::false"
+  extract_channel:
+    name: Extract branch name and release channel
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.extract_branch.outputs.branch }}
+      release_channel: ${{ steps.extract_release_channel.outputs.channel }}
+    steps:
+      - id: extract_branch
+        name: Extract branch name
+        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+      - id: extract_release_channel
+        name: Select release channel based on branch name
+        run: echo "::set-output name=channel::$( [[ ${{ steps.extract_branch.outputs.branch }} == "main" ]] && echo "nightly" || ([[ ${{ steps.extract_branch.outputs.branch }} == "beta" || ${{ steps.extract_branch.outputs.branch }} == "stable" ]] && echo "${{ steps.extract_branch.outputs.branch }}" || echo "false"))"
+  build:
+    needs: [check_date, extract_channel]
+    if: ${{ needs.check_date.outputs.should_run != 'false' && needs.extract_channel.outputs.release_channel != 'false' }}
+    name: Release ${{ needs.extract_channel.outputs.release_channel }} Build
+    runs-on: ubuntu-latest
+    env:
+      PROJECT: MusicPlayer.Wasm
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: |
+          3.1.x
+          5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet publish ${{ env.PROJECT }}/${{ env.PROJECT }}.csproj /property:GenerateFullPaths=true /consoleloggerparameters:NoSummary -c Release --no-restore
+    - name: Checkout build branch
+      uses: actions/checkout@v2
+      with:
+        ref: build
+        path: ${{ env.PROJECT }}.Build
+    - name: Copy compiled files
+      run: |
+        rm -rf ${{ env.PROJECT }}.Build/${{ needs.extract_channel.outputs.release_channel }}/*
+        cp -r ${{ env.PROJECT }}/bin/Release/net5.0/publish/* ${{ env.PROJECT }}.Build/${{ needs.extract_channel.outputs.release_channel }}
+    - name: Push files
+      run: |
+        cd ${{ env.PROJECT }}.Build
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m "Automated ${{ needs.extract_channel.outputs.release_channel }} build (${{ github.run_id }}) from $(date +'%D')"
+        git push
