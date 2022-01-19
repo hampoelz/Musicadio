@@ -1,0 +1,194 @@
+﻿<UserControl
+    x:Class="MusicPlayer.Shared.Controls.DragAndDropControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="DragAndDropControl_OnLoaded">
+
+    <Grid x:Name="DragAndDropArea" Visibility="Collapsed">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Desktop" />
+
+                <VisualState x:Name="Tablet">
+                    <VisualState.Setters>
+                        <Setter Target="DropFileToPlay.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="DropFileToPlay.(Grid.RowSpan)" Value="1" />
+
+                        <Setter Target="DropFileToAdd.(Grid.Column)" Value="0" />
+                        <Setter Target="DropFileToAdd.(Grid.Row)" Value="1" />
+                        <Setter Target="DropFileToAdd.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="DropFileToAdd.(Grid.RowSpan)" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Phone">
+                    <VisualState.Setters>
+                        <Setter Target="DropFileToPlay.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="DropFileToPlay.(Grid.RowSpan)" Value="1" />
+                        <Setter Target="DropFileToPlayDescription.Visibility" Value="Collapsed" />
+                        <Setter Target="DropFileToPlayIcon1.Visibility" Value="Collapsed" />
+                        <Setter Target="DropFileToPlayIcon2.Visibility" Value="Collapsed" />
+
+                        <Setter Target="DropFileToAdd.(Grid.Column)" Value="0" />
+                        <Setter Target="DropFileToAdd.(Grid.Row)" Value="1" />
+                        <Setter Target="DropFileToAdd.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="DropFileToAdd.(Grid.RowSpan)" Value="1" />
+                        <Setter Target="DropFileToAddDescription.Visibility" Value="Collapsed" />
+                        <Setter Target="DropFileToAddIcon1.Visibility" Value="Collapsed" />
+                        <Setter Target="DropFileToAddIcon2.Visibility" Value="Collapsed" />
+
+                        <Setter Target="DropFilesToAddDescription.Visibility" Value="Collapsed" />
+                        <Setter Target="DropFilesToAddIcon1.Visibility" Value="Collapsed" />
+                        <Setter Target="DropFilesToAddIcon2.Visibility" Value="Collapsed" />
+                        <Setter Target="DropFilesToAddIcon3.Visibility" Value="Collapsed" />
+                        <Setter Target="DropFilesToAddIcon4.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Background="#0D47A1" Opacity="0.8" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+
+        <Grid x:Name="DropFileToPlay" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
+              Grid.ColumnSpan="1"
+              BorderBrush="#82B1FF">
+            <Rectangle Margin="20" Stretch="Fill" RadiusX="10" RadiusY="10" StrokeDashArray="30,20"
+                       StrokeDashCap="Round"
+                       StrokeThickness="3"
+                       Stroke="{Binding BorderBrush, ElementName=DropFileToPlay}" Fill="Transparent" />
+            <StackPanel Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Viewbox x:Name="DropFileToPlayIcon1" Margin="15,0" Width="40" Height="40" Opacity="0.7">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="{Binding BorderBrush, ElementName=DropFileToPlay}"
+                                  Data="M12 3V13.55A4 4 0 1 0 14 17V7H18V3M10 19A2 2 0 1 1 12 17A2 2 0 0 1 10 19Z" />
+                        </Canvas>
+                    </Viewbox>
+                    <Viewbox Margin="15,0" Width="120" Height="120">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="{Binding BorderBrush, ElementName=DropFileToPlay}"
+                                  Data="M8.5,8.64L13.77,12L8.5,15.36V8.64M6.5,5V19L17.5,12" />
+                        </Canvas>
+                    </Viewbox>
+                    <Viewbox x:Name="DropFileToPlayIcon2" Margin="15,0" Width="40" Height="40" Opacity="0.7">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="{Binding BorderBrush, ElementName=DropFileToPlay}"
+                                  Data="M14,2L20,8V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2H14M18,20V9H13V4H6V20H18M13,10V12H11V17A2,2 0 0,1 9,19A2,2 0 0,1 7,17A2,2 0 0,1 9,15C9.4,15 9.7,15.1 10,15.3V10H13Z" />
+                        </Canvas>
+                    </Viewbox>
+                </StackPanel>
+
+                <TextBlock x:Uid="/DragAndDrop/PlayFile" Foreground="{Binding BorderBrush, ElementName=DropFileToPlay}"
+                           HorizontalAlignment="Center" TextAlignment="Center" FontSize="30" FontWeight="Bold"
+                           TextWrapping="WrapWholeWords" Margin="20,0" />
+                <TextBlock x:Uid="/DragAndDrop/PlayFileDesc" x:Name="DropFileToPlayDescription"
+                           Foreground="{Binding BorderBrush, ElementName=DropFileToPlay}"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center" FontSize="15" Margin="20" />
+            </StackPanel>
+            <Grid Background="Transparent" />
+        </Grid>
+
+        <Grid x:Name="DropFileToAdd" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BorderBrush="#82B1FF">
+            <Rectangle Margin="20" Stretch="Fill" RadiusX="10" RadiusY="10" StrokeDashArray="30,20"
+                       StrokeDashCap="Round"
+                       StrokeThickness="3"
+                       Stroke="{Binding BorderBrush, ElementName=DropFileToAdd}" Fill="Transparent" />
+            <StackPanel Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Viewbox x:Name="DropFileToAddIcon1" Margin="15,0" Width="40" Height="40" Opacity="0.7">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="{Binding BorderBrush, ElementName=DropFileToAdd}"
+                                  Data="M12 3V13.55A4 4 0 1 0 14 17V7H18V3M10 19A2 2 0 1 1 12 17A2 2 0 0 1 10 19Z" />
+                        </Canvas>
+                    </Viewbox>
+                    <Viewbox Margin="15,0" Width="120" Height="120">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="{Binding BorderBrush, ElementName=DropFileToAdd}"
+                                  Data="M2,16H10V14H2M18,14V10H16V14H12V16H16V20H18V16H22V14M14,6H2V8H14M14,10H2V12H14V10Z" />
+                        </Canvas>
+                    </Viewbox>
+                    <Viewbox x:Name="DropFileToAddIcon2" Margin="15,0" Width="40" Height="40" Opacity="0.7">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="{Binding BorderBrush, ElementName=DropFileToAdd}"
+                                  Data="M14,2L20,8V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2H14M18,20V9H13V4H6V20H18M13,10V12H11V17A2,2 0 0,1 9,19A2,2 0 0,1 7,17A2,2 0 0,1 9,15C9.4,15 9.7,15.1 10,15.3V10H13Z" />
+                        </Canvas>
+                    </Viewbox>
+                </StackPanel>
+
+                <TextBlock x:Uid="/DragAndDrop/AddFile" Foreground="{Binding BorderBrush, ElementName=DropFileToAdd}"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center" FontSize="30" FontWeight="Bold" TextWrapping="WrapWholeWords"
+                           Margin="20,0" />
+                <TextBlock x:Uid="/DragAndDrop/AddFileDesc" x:Name="DropFileToAddDescription"
+                           Foreground="{Binding BorderBrush, ElementName=DropFileToAdd}"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center" FontSize="15" Margin="20" />
+            </StackPanel>
+            <Grid Background="Transparent" />
+        </Grid>
+
+        <Grid x:Name="DropFilesToAdd" Grid.RowSpan="2" Grid.ColumnSpan="2" BorderBrush="White">
+            <Rectangle Margin="20" Stretch="Fill" RadiusX="10" RadiusY="10" StrokeDashArray="30,20"
+                       StrokeDashCap="Round"
+                       StrokeThickness="3"
+                       Stroke="{Binding BorderBrush, ElementName=DropFilesToAdd}" Fill="Transparent" />
+            <StackPanel Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Viewbox x:Name="DropFilesToAddIcon1" Margin="15,0" Width="40" Height="40" Opacity="0.4">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="{Binding BorderBrush, ElementName=DropFilesToAdd}"
+                                  Data="M12 3V13.55A4 4 0 1 0 14 17V7H18V3M10 19A2 2 0 1 1 12 17A2 2 0 0 1 10 19Z" />
+                        </Canvas>
+                    </Viewbox>
+                    <Viewbox x:Name="DropFilesToAddIcon2" Margin="15,0" Width="50" Height="50" Opacity="0.7">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="{Binding BorderBrush, ElementName=DropFilesToAdd}"
+                                  Data="M14,2L20,8V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2H14M18,20V9H13V4H6V20H18M13,10V12H11V17A2,2 0 0,1 9,19A2,2 0 0,1 7,17A2,2 0 0,1 9,15C9.4,15 9.7,15.1 10,15.3V10H13Z" />
+                        </Canvas>
+                    </Viewbox>
+                    <Viewbox Margin="15,0" Width="140" Height="140">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="{Binding BorderBrush, ElementName=DropFilesToAdd}"
+                                  Data="M2,16H10V14H2M18,14V10H16V14H12V16H16V20H18V16H22V14M14,6H2V8H14M14,10H2V12H14V10Z" />
+                        </Canvas>
+                    </Viewbox>
+                    <Viewbox x:Name="DropFilesToAddIcon3" Margin="15,0" Width="50" Height="50" Opacity="0.7">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="{Binding BorderBrush, ElementName=DropFilesToAdd}"
+                                  Data="M16 0H8C6.9 0 6 .9 6 2V18C6 19.1 6.9 20 8 20H20C21.1 20 22 19.1 22 18V6L16 0M20 18H8V2H15V7H20V18M4 4V22H20V24H4C2.9 24 2 23.1 2 22V4H4Z" />
+                        </Canvas>
+                    </Viewbox>
+                    <Viewbox x:Name="DropFilesToAddIcon4" Margin="15,0" Width="40" Height="40" Opacity="0.4">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="{Binding BorderBrush, ElementName=DropFilesToAdd}"
+                                  Data="M20 18V8H4V18H20M20 6C21.1 6 22 6.89 22 8V18C22 19.1 21.1 20 20 20H4C2.89 20 2 19.1 2 18L2 6C2 4.89 2.89 4 4 4H10L12 6H20M18 9V11H16V15C16 16.11 15.11 17 14 17C12.9 17 12 16.11 12 15C12 13.9 12.9 13 14 13C14.17 13 14.34 13 14.5 13.06V9H18Z" />
+                        </Canvas>
+                    </Viewbox>
+                </StackPanel>
+
+                <TextBlock x:Uid="/DragAndDrop/AddFiles" Foreground="{Binding BorderBrush, ElementName=DropFilesToAdd}"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center" FontSize="30" FontWeight="Bold" TextWrapping="WrapWholeWords"
+                           Margin="20,0" />
+                <TextBlock x:Uid="/DragAndDrop/AddFilesDesc" x:Name="DropFilesToAddDescription"
+                           Foreground="{Binding BorderBrush, ElementName=DropFilesToAdd}"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center" FontSize="15" Margin="20" />
+            </StackPanel>
+            <Grid Background="Transparent" />
+        </Grid>
+
+    </Grid>
+</UserControl>

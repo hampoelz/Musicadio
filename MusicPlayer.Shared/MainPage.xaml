@@ -1,0 +1,147 @@
+<Page x:Class="MusicPlayer.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:toolkit="using:Uno.UI.Toolkit"
+      xmlns:controls="clr-namespace:MusicPlayer.Shared.Controls"
+      xmlns:material="using:Uno.Material.Controls" mc:Ignorable="d" SizeChanged="MainPage_OnSizeChanged"
+      Loaded="MainPage_OnLoaded">
+
+    <Grid Background="{ThemeResource SystemChromeLowColor}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Desktop" />
+                <VisualState x:Name="Tablet">
+                    <VisualState.Setters>
+                        <Setter Target="SongInformations.Margin" Value="0,240,0,0" />
+                        <Setter Target="ContentGrid.Margin" Value="0,0,0,0" />
+
+                        <Setter Target="JoinRoom.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="CreateRoom.(Grid.Column)" Value="0" />
+                        <Setter Target="CreateRoom.(Grid.Row)" Value="1" />
+                        <Setter Target="CreateRoom.(Grid.ColumnSpan)" Value="4" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Phone">
+                    <VisualState.Setters>
+                        <Setter Target="SongInformations.Margin" Value="0,240,0,0" />
+                        <Setter Target="ContentGrid.Margin" Value="0,0,0,0" />
+
+                        <Setter Target="Play.(Grid.Column)" Value="0" />
+                        <Setter Target="Play.(Grid.Row)" Value="0" />
+                        <Setter Target="Play.(Grid.ColumnSpan)" Value="2" />
+
+                        <Setter Target="AddToPlaylist.(Grid.Column)" Value="2" />
+                        <Setter Target="AddToPlaylist.(Grid.Row)" Value="0" />
+                        <Setter Target="AddToPlaylist.(Grid.ColumnSpan)" Value="2" />
+
+                        <Setter Target="ClearPlaylist.(Grid.Column)" Value="0" />
+                        <Setter Target="ClearPlaylist.(Grid.Row)" Value="1" />
+                        <Setter Target="ClearPlaylist.(Grid.ColumnSpan)" Value="2" />
+
+                        <Setter Target="Playlist.(Grid.Column)" Value="2" />
+                        <Setter Target="Playlist.(Grid.Row)" Value="1" />
+                        <Setter Target="Playlist.(Grid.ColumnSpan)" Value="2" />
+
+                        <Setter Target="JoinRoom.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="CreateRoom.(Grid.Column)" Value="0" />
+                        <Setter Target="CreateRoom.(Grid.Row)" Value="1" />
+                        <Setter Target="CreateRoom.(Grid.ColumnSpan)" Value="4" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ScrollViewer x:Name="ContentScrollViewer" ViewChanged="ScrollViewer_OnViewChanged">
+            <Grid>
+                <controls:MusicControl x:Name="MusicControl" />
+
+
+                <StackPanel>
+                    <toolkit:ElevatedView x:Name="SongInformations" Margin="55,250,55,0" Height="240"
+                                          Background="{ThemeResource SystemChromeMediumColor}" VerticalAlignment="Top"
+                                          Elevation="24" CornerRadius="5">
+                        <Border x:Name="Cover" Height="200" Width="200" Margin="20" VerticalAlignment="Center"
+                                HorizontalAlignment="Left">
+                            <Border CornerRadius="5" Background="{ThemeResource SystemChromeLowColor}">
+                                <ContentControl Content="{StaticResource Cover}" />
+                            </Border>
+                        </Border>
+                    </toolkit:ElevatedView>
+
+
+                    <!-- TODO: Create UserElement for Content -->
+                    <Grid x:Name="ContentGrid" Margin="55,30,55,20" Height="5000"
+                          Background="{ThemeResource SystemChromeMediumColor}" VerticalAlignment="Top">
+                        <StackPanel>
+                            <TextBox x:Name="Url" PlaceholderText="Insert Direct- or YouTube-Url to Song" Margin="20"
+                                     VerticalAlignment="Top" HorizontalAlignment="Stretch" CornerRadius="2" />
+
+                            <Grid Margin="10,0" VerticalAlignment="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Button x:Name="Play" Margin="10,5" Content="Play Song/Url" Grid.Column="0"
+                                        HorizontalAlignment="Stretch" CornerRadius="2" Click="Play_OnClick" />
+                                <Button x:Name="AddToPlaylist" Margin="10,5" Content="Add Song/Url to Playlist"
+                                        Grid.Column="1" HorizontalAlignment="Stretch" CornerRadius="2"
+                                        Click="AddToPlaylist_OnClick" />
+                                <Button x:Name="ClearPlaylist" Margin="10,5" Content="Clear Playlist" Grid.Column="2"
+                                        HorizontalAlignment="Stretch" CornerRadius="2" Click="ClearPlaylist_OnClick" />
+                                <Button x:Name="Playlist" Margin="10,5" Content="Start Playlist" Grid.Column="3"
+                                        HorizontalAlignment="Stretch" CornerRadius="2" Click="Playlist_OnClick" />
+                            </Grid>
+
+                            <Rectangle Margin="25,20" Fill="{ThemeResource SystemBaseMediumColor}"
+                                       HorizontalAlignment="Stretch" Height="0.5" />
+
+                            <Grid Margin="10,0" VerticalAlignment="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBox x:Name="RoomId" Margin="10,5"
+                                         PlaceholderText="Enter a friend's room ID to join" VerticalAlignment="Top"
+                                         HorizontalAlignment="Stretch" CornerRadius="2" Grid.Column="0"
+                                         Grid.ColumnSpan="2" />
+
+                                <Button x:Name="JoinRoom" Margin="10,5" Content="Join your friend's room"
+                                        Grid.Column="2" HorizontalAlignment="Stretch" CornerRadius="2"
+                                        Click="JoinRoom_OnClick" />
+                                <Button x:Name="CreateRoom" Margin="10,5" Content="Create your own room"
+                                        Grid.Column="3" HorizontalAlignment="Stretch" CornerRadius="2"
+                                        Click="CreateRoom_OnClick" />
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Height="120" />
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <controls:MusicControl x:Name="Navigation" />
+
+        <controls:DragAndDropControl x:Name="DragAndDropControl" />
+
+        <controls:TitleBar />
+    </Grid>
+</Page>

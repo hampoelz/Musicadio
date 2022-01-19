@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>6279c845-92f8-4333-ab99-3d213163593c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>MusicPlayer</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\DragAndDropControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\MusicControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\TitleBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DragAndDropControl.xaml.cs">
+      <DependentUpon>DragAndDropControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\MusicControl.xaml.cs">
+      <DependentUpon>MusicControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\TitleBar.xaml.cs">
+      <DependentUpon>TitleBar.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-icon-120.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-icon-152.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-icon-167.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-icon-180.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-1125-2436.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-1136-640.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-1242-2208.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-1242-2688.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-1334-750.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-1536-2048.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-1668-2224.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-1668-2388.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-1792-828.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-2048-1536.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-2048-2732.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-2208-1242.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-2224-1668.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-2388-1668.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-2436-1125.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-2688-1242.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-2732-2048.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-640-1136.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-750-1334.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apple-splash-828-1792.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\favicon-196.png"/>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\logo.svg"/>
+    <None Include="$(MSBuildThisFileDirectory)Assets\cover.svg"/>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Scripts\DragAndDrop\InitializeDragAndDropControl.js"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Engine\AudioEngine.cs"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Engine\Scripts\InitializeAudioEngine.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Engine\Scripts\InitializeSpectrumAnalyzer.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Engine\Scripts\OpenFileSelector.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Engine\Scripts\PausePlay.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Engine\Scripts\StartPlayback.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Engine\Scripts\StopPlayback.js"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Database.cs"/>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\File.cs"/>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\FragmentNavigation.cs"/>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Stream.cs"/>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Settings.cs"/>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\JavaScript.cs"/>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\StringExtensions.cs"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Helpers\Scripts\RegisterServiceWorker.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Helpers\Scripts\Settings\getKeys.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Helpers\Scripts\Settings\getLength.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Helpers\Scripts\Settings\set.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Helpers\Scripts\Settings\get.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Helpers\Scripts\Settings\delete.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Helpers\Scripts\Settings\clear.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Helpers\Scripts\Stream\CreateStream.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Helpers\Scripts\Stream\InitializeStream.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Helpers\Scripts\Stream\JoinStream.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Helpers\Scripts\Stream\LeaveStream.js"/>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Helpers\Scripts\Stream\SendStreamInformation.js"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Strings\SplashScreen.js"/>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\de\Resources.resw"/>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw"/>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\DragAndDrop.resw"/>
+  </ItemGroup>
+  <ItemGroup>
+    <_Globbled_Page Include="$(MSBuildThisFileDirectory)**/*.xaml" Exclude="@(Page);@(ApplicationDefinition)">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </_Globbled_Page>
+    <Page Include="@(_Globbled_Page)"/>
+    <_Globbed_Compile Include="$(MSBuildThisFileDirectory)**/*.xaml.cs" Exclude="@(Compile)">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </_Globbed_Compile>
+    <_Globbed_Compile Include="$(MSBuildThisFileDirectory)**/*.cs" Exclude="@(Compile);@(_Globbed_Compile)"/>
+    <Compile Include="@(_Globbed_Compile)"/>
+    <_Globbed_PRIResource Include="$(MSBuildThisFileDirectory)**/*.resw" Exclude="@(PRIResource)"/>
+    <PRIResource Include="@(_Globbed_PRIResource)"/>
+    <_Globbed_Content Include="$(MSBuildThisFileDirectory)Assets/**/*.*" Exclude="@(Content)"/>
+    <Content Include="@(_Globbed_Content)"/>
+  </ItemGroup>
+</Project>

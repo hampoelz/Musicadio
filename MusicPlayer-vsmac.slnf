@@ -1,0 +1,9 @@
+{
+  "solution": {
+    "path": "MusicPlayer.sln",
+    "projects": [
+		"MusicPlayer.Shared\\MusicPlayer.Shared.shproj",
+		"MusicPlayer.Wasm\\MusicPlayer.Wasm.csproj",
+    ]
+  }
+}
