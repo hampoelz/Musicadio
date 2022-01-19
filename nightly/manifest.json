@@ -1,0 +1,30 @@
+{
+    "name": "Musicadio Nightly",
+    "short_name": "Musicadio N",
+    "id": "https://musicadio.hampoelz.net/nightly",
+    "start_url": "https://musicadio.hampoelz.net/nightly/",
+    "scope": "/nightly/",
+    "display": "standalone",
+    "theme_color": "#0D47A1",
+    "background_color": "#FFFFFF",
+    "description": "Would you like to be the first to see what's new in Musicadio? We provide regular updates on the latest features on this nightly channel.",
+    "dir": "ltr",
+    "lang": "en",
+    "orientation": "any",
+    "shortcuts": [],
+    "icons": [
+        {
+            "src": "icons/manifest-icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/manifest-icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [],
+    "prefer_related_applications": false,
+    "related_applications": []
+}
