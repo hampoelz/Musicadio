@@ -1,0 +1,27 @@
+{
+  "name": "rh-utensils-socket",
+  "version": "1.0.0",
+  "description": "WebSocket server for RH Utensils",
+  "homepage": "https://hampoelz.net/",
+  "main": "index.js",
+  "author": {
+    "name": "RH Utensils",
+    "email": "rh-utensils@hampoelz.net"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rh-utensils/WebSocket.git"
+  },
+  "engines": {
+    "node": "13.1.x"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0",
+    "uuid": "^7.0.3"
+  }
+}
