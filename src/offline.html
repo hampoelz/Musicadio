@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RH Music</title>
+    <link href="res/css/base.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="titlebar">
+        <div class="drag"></div>
+
+        <img class="icon">
+        <p class="titel">RH Music</p>
+
+        <div id="MinimizeButton" class="minimize"></div>
+
+        <div id="CloseButton" class="close"></div>
+    </div>
+    <div id="refresh">
+        <img height="300" width="300" class="logo" title="Die App wird geladen ...">
+        <h1 class="refresh">Keine Internerverbindung!</h1>
+        <p class="refresh">Hier tippen um es erneut zu versuchen!</p>
+    </div>
+
+    <script>
+        window.ipcRenderer.send('loadLogo');
+
+        document.getElementById('MinimizeButton').addEventListener('click', () => window.ipcRenderer.send('app:minimize'));
+        document.getElementById('CloseButton').addEventListener('click', () => window.ipcRenderer.send('app:quit'));
+
+        document.getElementById('refresh').addEventListener('click', () => window.ipcRenderer.send('app:refresh'));            
+    </script>
+</body>
+
+</html>

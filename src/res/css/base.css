@@ -1,0 +1,110 @@
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url(./fonts/Roboto.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+html, body {
+    height: 100%;
+    font-family: "Roboto", Sans-serif;
+    color: white;
+}
+
+body {
+    margin: 0;
+    background-color: #0D47A1;
+}
+
+h1 {
+    bottom: 25%;
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%, -50%);
+}
+
+p.refresh {
+    bottom: 20%;
+    font-size: large;
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%, -50%);
+}
+
+.logo {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.refresh {
+    cursor: pointer;
+}
+
+.titlebar {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+}
+
+.drag {
+    -webkit-app-region: drag;
+    position: absolute;
+    width: -webkit-calc(100% - 125px);
+    width: -moz-calc(100% - 125px);
+    width: calc(100% - 125px);
+    height: 30px;
+}
+
+.icon {
+    pointer-events: none;
+    position: absolute;
+    top: -2px;
+    left: 28px;
+    width: 32px;
+    height: 32px;
+    clip: rect(0.5px, 25px, 24.5px, 0px);
+}
+
+.titel {
+    margin: 0 !important;
+    font-size: 15px;
+    text-align: left;
+    letter-spacing: 0em;
+    white-space: pre;
+    position: absolute;
+    top: 6px;
+    left: 55px;
+    width: 64px;
+    height: 20px;
+}
+
+.minimize {
+    background-color: rgb(46, 125, 50);
+    border-radius: 7px;
+    position: absolute;
+    top: 7.5px;
+    left: -webkit-calc(100% - 70px);
+    left: -moz-calc(100% - 70px);
+    left: calc(100% - 70px);
+    width: 15px;
+    height: 15px;
+    clip: rect(0px, 15px, 15px, 0px);
+}
+
+.close {
+    background-color: rgb(198, 40, 40);
+    border-radius: 7px;
+    position: absolute;
+    top: 7.5px;
+    left: -webkit-calc(100% - 45px);
+    left: -moz-calc(100% - 45px);
+    left: calc(100% - 45px);
+    width: 15px;
+    height: 15px;
+    clip: rect(0px, 15px, 15px, 0px);
+}
