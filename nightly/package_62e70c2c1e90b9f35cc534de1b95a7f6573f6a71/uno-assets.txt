@@ -1,0 +1,6 @@
+Assets/manifest.json
+Assets/SplashScreen.png
+Languages/SplashScreen.js
+Assets/cover.svg
+Assets/logo.svg
+Assets/SharedAssets.md
