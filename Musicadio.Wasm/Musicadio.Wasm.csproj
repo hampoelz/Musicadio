@@ -36,7 +36,7 @@
     <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.4.20"/>
     <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.4.20"/>
     <PackageReference Include="Uno.Wasm.Bootstrap" Version="3.3.1"/>
-    <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="3.3.1"/>
+    <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="7.0.18"/>
   </ItemGroup>
   <Import Project="..\Musicadio.Shared\Musicadio.Shared.projitems" Label="Shared" Condition="Exists('..\Musicadio.Shared\Musicadio.Shared.projitems')"/>
 </Project>
